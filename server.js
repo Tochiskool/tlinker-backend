@@ -3,7 +3,13 @@ import data from './data.js';
 import cors from 'cors';
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: ['http://localhost:5173', 'https://tlinker-frontend.vercel.app/'],
+    credentials: true, // if you're sending cookies or auth headers
+  })
+);
+
 
 app.get('/api/products', (req, res) => {
   res.send(data.products);
