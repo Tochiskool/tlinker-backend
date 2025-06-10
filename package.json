@@ -15,8 +15,9 @@
     "Mongodb"
   ],
   "author": "ACN",
-  "license": "MIT",  
+  "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^5.1.0"
   },
   "devDependencies": {
