@@ -30,6 +30,13 @@ app.get('/', (req, res) => {
 });
 
 const port = process.env.PORT || 5001;
+// Catch all errors
+app.use((err, req, res, next) => {
+  res.status(err.status || 500);
+  res.setHeader('Access-Control-Allow-Origin', '*'); // or restrict to your domain
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.json({ message: err.message || 'Something went wrong' });
+});
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
