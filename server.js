@@ -6,7 +6,11 @@ const app = express();
 
 app.use(
   cors({
-    origin: ['http://localhost:5173', 'http://localhost:5174', 'https://tlinker-frontend.vercel.app'],
+    origin: [
+      'http://localhost:5173',
+      'http://localhost:5174',
+      'https://tlinker-frontend.vercel.app',
+    ],
     credentials: true,
   })
 );
@@ -17,6 +21,15 @@ app.get('/api/products', (req, res) => {
 
 app.get('/api/products/slug/:slug', (req, res) => {
   const product = data.products.find((x) => x.slug === req.params.slug);
+  console.log('Sending product:', product);
+  if (product) {
+    res.send(product);
+  } else {
+    res.status(404).send({ message: 'Product Not Found' });
+  }
+});
+app.get('/api/products/:id', (req, res) => {
+  const product = data.products.find((x) => x._id === req.params.id);
   console.log('Sending product:', product);
   if (product) {
     res.send(product);
